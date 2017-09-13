@@ -1,0 +1,16 @@
+
+.title-slide {
+  background-image: url(img/20170911_142033.jpg);
+  background-size: cover;
+}
+
+.title-slide h1 {
+  color: rgba(191,152,124,1);
+  font-weight: bold;
+}
+
+.title-slide h2, .title-slide h3 {
+  color: rgba(191,152,124,1); 
+  line-height: 1.5em;
+}
+

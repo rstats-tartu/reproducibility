@@ -1,0 +1,114 @@
+---
+title: "Reproducible data analysis workflow using version control"
+subtitle: "Reproducible data analysis using R, Tartu 2017"
+author: "Taavi Päll"
+date: "2017/09/11"
+output:
+  xaringan::moon_reader:
+    includes:
+      in_header: fa.html
+    css: ["default", "my.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse, center, middle
+
+# What is reproducibility and replicability in science?
+
+---
+
+## Reproducibility
+
+> Reproducibility of research is understood as calculation of quantitative research results by independent researchers using original data and methods.
+
+Meaning that you should be able to follow the analysis path of someones results 
+from data to final results and obtain numerically close* or identical values.
+
+
+Although, same numeric results can be obtained from the same data using different calculation methods.
+
+.footnote[Sometimes analysis involves for example random sampling. To make 
+such calculations replicable use `set.seed()`.]
+
+---
+
+## Levels of reproducibility
+
+- Reproducibility can be dependent on three levels of information: empirical, statistical, computational (Stodden, 2016).
+- Empirical reproducibility includes experimental details, used reagents, cell lines, instruments, instrument settings.
+- Statistical reproducibility includes details about used statistical tests, used models, thresholds.
+- Computational reproducibility means availability of data, details about software, workflows, and details of the computational environment.
+
+.footnote[
+Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Ioannidis, JP, Taufer, M (2016). Enhancing reproducibility for computational methods. Science, 354, 6317:1240-1241.
+]
+
+---
+
+## Replicability
+
+> Replication is different from reproducibility in a sense that someones results 
+can be replicated also without strictly following provided protocols. In fact, often
+it's desirable to replicate other peoples results using completely different approach. 
+Replication has therefore more broader scope, replication is how science works.
+
+---
+
+## This course is more about replicability
+
+- Replicability improves reproducibility, but not ensures it 100%, 
+- because getting the same number does not fix faults in experimental design and 
+scientific question asked. 
+- It's not uncommon that researchers cannot replicate their own computation results, mainly because _poor documentation of data analysis steps, leading to inadvertent errors_ in published articles, and even to retractions.
+- Minimal components that enable independent regeneration of computational results are the data, the computational steps (the code), and the workflow describing how to generate the results using the data and code. Required info includes parameter settings, random number seeds, make files, or function invocation sequences (Stodden, 2016).
+
+---
+class: middle
+
+> **This course teaches how to conduct and document data analysis and disseminate results using freely available toolset, consisting of R statistical language, R markdown and Git version control.**
+
+---
+class: inverse, middle, center
+
+# Tooling up
+
+---
+
+## Reproducibility toolkit
+
+- Even code written in R can be poorly replicable, because of missing dependencies
+- Use of **R markdown** allows easy code and analysis annotation.
+- <i class="fa fa-git" aria-hidden="true"></i> + <i class="fa fa-github" aria-hidden="true"></i> helps tracking progress.
+
+
+<img src="https://www.stickermule.com/marketplace/embed_img/9288" style="max-width:100%;">
+<img src="https://www.stickermule.com/marketplace/embed_img/9305" style="max-width:100%;">
+<img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" style="max-width:30%;">
+
+---
+
+## Folder structure of an project
+
+
+.footer[
+Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
+]
+
+---
+
+## Creating Github account
+
+.footer[
+Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
+]
+---
+
+
