@@ -2,7 +2,7 @@
 title: "Reproducible data analysis workflow using version control"
 subtitle: "Reproducible data analysis using R, Tartu 2017"
 author: "Taavi Päll"
-date: "2017/09/11"
+date: "2017/09/19"
 output:
   xaringan::moon_reader:
     includes:
@@ -10,7 +10,7 @@ output:
     css: ["default", "my.css"]
     lib_dir: libs
     nature:
-      highlightStyle: github
+      highlightStyle: GitHub
       highlightLines: true
       countIncrementalSlides: false
 ---
@@ -86,17 +86,96 @@ class: inverse, middle, center
 
 - Even code written in R can be poorly replicable, because of missing dependencies
 - Use of **R markdown** allows easy code and analysis annotation.
-- <i class="fa fa-git" aria-hidden="true"></i> + <i class="fa fa-github" aria-hidden="true"></i> helps tracking progress.
+- <i class="fa fa-git fa-lg" aria-hidden="true"></i> + <i class="fa fa-github fa-lg" aria-hidden="true"></i> (_GitHub_) helps tracking progress.
 
-
+<br><br>
+<div class=center>
 <img src="https://www.stickermule.com/marketplace/embed_img/9288" style="max-width:100%;">
 <img src="https://www.stickermule.com/marketplace/embed_img/9305" style="max-width:100%;">
 <img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" style="max-width:30%;">
+</div>
+
+---
+
+## Why R markdown
+Reproducibility and efficiency
+
+.pull-left[
+- Code, prose and output together; syntax highlighting.
+- Your only workflow is reproducible workflow.
+- Consistent formatting, easier to share.
+- Iterative progress, knit early an knit often.
+]
+
+.pull-right[
+<br>
+<div class=center>
+<img src="https://www.stickermule.com/marketplace/embed_img/9298" style="max-width:100%;">
+</div>
+]
+---
+
+## Why <i class="fa fa-git fa-lg" aria-hidden="true"></i> and <i class="fa fa-github fa-lg" aria-hidden="true"></i> (_GitHub_) is useful
+
+- __Version control__: lots of mistakes along the way, track history to revert back to last good code.
+- __Collaboration__: platform and inerface designed to enable collaboration (in software development).
+- __Accountability__: transparent commit history.
+- __Marketability__ and __discoverability__.
+<br>
+<br>
+<br>
+
+.footer[
+- Source: Mine Cetinkaya-Rundel ["Teach datascience to new users"](https://github.com/mine-cetinkaya-rundel/2017-07-05-teach-ds-to-new-user)
+- Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
+]
+
+???
+
+- Transparent commit history: Version control helps assess scientific paper or project authors contributions
+
+
+---
+
+## Let's start by creating an GitHub account
+
+- Create a GitHub account at https://github.com
+    - This will be a public account associated with your name
+    - Choose a username wisely for future use
+    - Don't worry about details, you can fill them later
+- Create a repository `intro_demo`
+    - Give a brief and informative description
+    - Choose "Public"
+    - Check the box for "Initialize this repository with a README"
+    - Click "Create Repository"
+
+---
+
+## Cloning the repository
+
+- Go to RStudio
+- File -> New Project
+    - Vesrion Control: Checkout a project from a version control repository
+    - Fill in the info:
+         - URL: use HTTPS address
+         - Create as a subdirectory of: Browse and create a new folder call `rstats2017`
+- Note for the future: Each course component you work on will live in its own repository, and should be fully contained in a folder inside the folder `rstats2017`.
+
+---
+
+## Merge conflicts
+
+- On your repo GitHub website edit the README document and `Commit` it with a message describing what you did.
+- Then, in RStudio also edit the README document with a different change.
+     - Commit your changes
+     - Try to push - you will get an error!
+     - Try pulling
+     - Resolve the merge conflict and then commit and push
+- When collaborating over GitHub and working in teams you run into merge conflicts, and it is very important to learn how to resolve them properly.
 
 ---
 
 ## Folder structure of an project
-
 
 .footer[
 Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
@@ -104,11 +183,7 @@ Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproduc
 
 ---
 
-## Creating Github account
 
-.footer[
-Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
-]
 ---
 
 
