@@ -10,7 +10,7 @@ output:
     css: ["default", "my.css"]
     lib_dir: libs
     nature:
-      highlightStyle: GitHub
+      highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
 ---
@@ -182,7 +182,10 @@ Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproduc
 ]
 
 ---
+class: inverse, middle
 
+- Slides are available: https://rstats-tartu.github.io/reproducibility
+- <i class="fa fa-github fa-lg" aria-hidden="true"></i> [rstats-tartu/reproducibility](https://github.com/rstats-tartu/reproducibility/tree/gh-pages)
 
 ---
 
