@@ -133,7 +133,7 @@ knitr::include_graphics("img/patmat2.png")
 ```
 
 .footnote[
-_Images: Pat and Mat animation._
+_Images: Pat&Mat animation._
 ]
 
 ]
