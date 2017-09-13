@@ -117,7 +117,33 @@ Reproducibility and efficiency
 
 ## Why <i class="fa fa-git fa-lg" aria-hidden="true"></i> and <i class="fa fa-github fa-lg" aria-hidden="true"></i> (_GitHub_) is useful
 
+.pull-left[
 - __Version control__: lots of mistakes along the way, track history to revert back to last good code.
+]
+
+.pull-right[
+
+```{r, echo=FALSE, fig.align="center"}
+knitr::include_graphics("img/patmat1.png")
+```
+
+
+```{r, echo=FALSE, fig.align="center"}
+knitr::include_graphics("img/patmat2.png")
+```
+
+.footnote[
+_Images: Pat and Mat animation._
+]
+
+]
+
+
+
+---
+
+
+
 - __Collaboration__: platform and inerface designed to enable collaboration (in software development).
 - __Accountability__: transparent commit history.
 - __Marketability__ and __discoverability__.
