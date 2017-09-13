@@ -176,6 +176,8 @@ Reproducibility and efficiency
 ---
 class: middle
 
+## To be learned
+
 - Remember to pull before starting to work!
 - Unfortunately, it's impossible to avoid shell: using RStudio interface, you can commit, push-pull, edit .gitignore file, change between branches.
 - Cloning remote repos, creating branches must be done in terminal or in some other Git UI.
@@ -195,7 +197,4 @@ class: inverse, middle
 
 - Slides are available: https://rstats-tartu.github.io/reproducibility
 - <i class="fa fa-github fa-lg" aria-hidden="true"></i> [rstats-tartu/reproducibility](https://github.com/rstats-tartu/reproducibility/tree/gh-pages)
-
----
-
 
