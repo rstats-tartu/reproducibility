@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reproducible data analysis workflow using version control</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Taavi Päll" />
+    <link href="libs/remark-css/example.css" rel="stylesheet" />
+    
+    <script src="https://use.fontawesome.com/e4ba4259a1.js"></script>
+    <link rel="stylesheet" href="my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Reproducible data analysis workflow using version control
+## Reproducible data analysis using R, Tartu 2017
+### Taavi Päll
+### 2017/09/19
+
+---
+
+
+
+
+class: inverse, center, middle
+
+# What is reproducibility and replicability in science?
+
+---
+
+## Reproducibility
+
+&gt; Reproducibility of research is understood as calculation of quantitative research results by independent researchers using original data and methods.
+
+Meaning that you should be able to follow the analysis path of someones results 
+from data to final results and obtain numerically close* or identical values.
+
+
+Although, same numeric results can be obtained from the same data using different calculation methods.
+
+.footnote[Sometimes analysis involves for example random sampling. To make 
+such calculations replicable use `set.seed()`.]
+
+---
+
+## Levels of reproducibility
+
+- Reproducibility can be dependent on three levels of information: empirical, statistical, computational (Stodden, 2016).
+- Empirical reproducibility includes experimental details, used reagents, cell lines, instruments, instrument settings.
+- Statistical reproducibility includes details about used statistical tests, used models, thresholds.
+- Computational reproducibility means availability of data, details about software, workflows, and details of the computational environment.
+
+.footnote[
+Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Ioannidis, JP, Taufer, M (2016). Enhancing reproducibility for computational methods. Science, 354, 6317:1240-1241.
+]
+
+---
+
+## Replicability
+
+&gt; Replication is different from reproducibility in a sense that someones results 
+can be replicated also without strictly following provided protocols. In fact, often
+it's desirable to replicate other peoples results using completely different approach. 
+Replication has therefore more broader scope, replication is how science works.
+
+---
+
+## This course is more about replicability
+
+- Replicability improves reproducibility, but not ensures it 100%, 
+- because getting the same number does not fix faults in experimental design and 
+scientific question asked. 
+- It's not uncommon that researchers cannot replicate their own computation results, mainly because _poor documentation of data analysis steps, leading to inadvertent errors_ in published articles, and even to retractions.
+- Minimal components that enable independent regeneration of computational results are the data, the computational steps (the code), and the workflow describing how to generate the results using the data and code. Required info includes parameter settings, random number seeds, make files, or function invocation sequences (Stodden, 2016).
+
+---
+class: middle
+
+&gt; **This course teaches how to conduct and document data analysis and disseminate results using freely available toolset, consisting of R statistical language, R markdown and Git version control.**
+
+---
+class: inverse, middle, center
+
+# Tooling up
+
+---
+
+## Reproducibility toolkit
+
+- Even code written in R can be poorly replicable, because of missing dependencies
+- Use of **R markdown** allows easy code and analysis annotation.
+- &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; + &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_) helps tracking progress.
+
+&lt;br&gt;&lt;br&gt;
+&lt;div class=center&gt;
+&lt;img src="https://www.stickermule.com/marketplace/embed_img/9288" style="max-width:100%;"&gt;
+&lt;img src="https://www.stickermule.com/marketplace/embed_img/9305" style="max-width:100%;"&gt;
+&lt;img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" style="max-width:30%;"&gt;
+&lt;/div&gt;
+
+---
+
+## Why R markdown
+Reproducibility and efficiency
+
+.pull-left[
+- Code, prose and output together; syntax highlighting.
+- Your only workflow is reproducible workflow.
+- Consistent formatting, easier to share.
+- Iterative progress, knit early an knit often.
+]
+
+.pull-right[
+&lt;br&gt;
+&lt;div class=center&gt;
+&lt;img src="https://www.stickermule.com/marketplace/embed_img/9298" style="max-width:100%;"&gt;
+&lt;/div&gt;
+]
+---
+
+## Why &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; and &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_) is useful
+
+- __Version control__: lots of mistakes along the way, track history to revert back to last good code.
+- __Collaboration__: platform and inerface designed to enable collaboration (in software development).
+- __Accountability__: transparent commit history.
+- __Marketability__ and __discoverability__.
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+.footer[
+- Source: Mine Cetinkaya-Rundel ["Teach datascience to new users"](https://github.com/mine-cetinkaya-rundel/2017-07-05-teach-ds-to-new-user)
+- Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
+]
+
+???
+
+- Transparent commit history: Version control helps assess scientific paper or project authors contributions
+
+
+---
+
+## Let's start by creating an GitHub account
+
+- Create a GitHub account at https://github.com
+    - This will be a public account associated with your name
+    - Choose a username wisely for future use
+    - Don't worry about details, you can fill them later
+- Create a repository `intro_demo`
+    - Give a brief and informative description
+    - Choose "Public"
+    - Check the box for "Initialize this repository with a README"
+    - Click "Create Repository"
+
+---
+
+## Cloning the repository
+
+- Go to RStudio
+- File -&gt; New Project
+    - Vesrion Control: Checkout a project from a version control repository
+    - Fill in the info:
+         - URL: use HTTPS address
+         - Create as a subdirectory of: Browse and create a new folder call `rstats2017`
+- Note for the future: Each course component you work on will live in its own repository, and should be fully contained in a folder inside the folder `rstats2017`.
+
+---
+
+## Merge conflicts
+
+- On your repo GitHub website edit the README document and `Commit` it with a message describing what you did.
+- Then, in RStudio also edit the README document with a different change.
+     - Commit your changes
+     - Try to push - you will get an error!
+     - Try pulling
+     - Resolve the merge conflict and then commit and push
+- When collaborating over GitHub and working in teams you run into merge conflicts, and it is very important to learn how to resolve them properly.
+
+---
+
+## Folder structure of an project
+
+.footer[
+Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
+]
+
+---
+
+
+---
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "GitHub",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {window.dispatchEvent(new Event('resize'));});
+(function() {var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler"); if (!r) return; s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }"; d.head.appendChild(s);})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
