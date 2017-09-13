@@ -139,10 +139,9 @@ _Images: Pat&Mat animation._
 ]
 
 
-
 ---
 
-
+## <i class="fa fa-git fa-lg" aria-hidden="true"></i> and <i class="fa fa-github fa-lg" aria-hidden="true"></i>, continued
 
 - __Collaboration__: platform and inerface designed to enable collaboration (in software development).
 - __Accountability__: transparent commit history.
@@ -181,7 +180,7 @@ _Images: Pat&Mat animation._
 
 - Go to RStudio
 - File -> New Project
-    - Vesrion Control: Checkout a project from a version control repository
+    - Version Control: Checkout a project from a version control repository
     - Fill in the info:
          - URL: use HTTPS address
          - Create as a subdirectory of: Browse and create a new folder call `rstats2017`
