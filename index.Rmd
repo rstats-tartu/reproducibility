@@ -73,6 +73,13 @@ scientific question asked.
 ---
 class: middle
 
+<div>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">&quot;We have known common problems when developing analysis&quot; here is a list by <a href="https://twitter.com/hspter">@hspter</a> and <a href="https://twitter.com/JennyBryan">@JennyBryan</a> <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> <a href="https://twitter.com/hashtag/EARLconf2017?src=hash">#EARLconf2017</a> <a href="https://t.co/fVjlq9Q3OF">pic.twitter.com/fVjlq9Q3OF</a></p>&mdash; Alice Data (@alice_data) <a href="https://twitter.com/alice_data/status/908244191733538816">September 14, 2017</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+---
+class: middle
+
 > **This course teaches how to conduct and document data analysis and disseminate results using freely available toolset, consisting of R statistical language, R markdown and Git version control.**
 
 ---
