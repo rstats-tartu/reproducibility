@@ -219,6 +219,26 @@ _Images: Pat&Mat animation._
 
 ## Folder structure of an R project
 
+```
+project/
+|- DESCRIPTION       # project metadata and dependencies
+|- README.md         # description of contents and guide to users
+|- my_analysis.Rmd   # markdown file containing analysis
+|                    # writeup together with R code chunks
+|
+|- data/             # raw data, not changed once created 
+|  +-my_data.csv     # data files in open formats, 
+|                    # such as TXT, CSV, TSV etc.
+|
+|- src/              # any programmatic code
+|  +-my_scripts.R    # R code used to analyse and 
+|                    # visualise data
+|
+|- lib/              # user generated functions
+|  +-my_functions.R  # R code defining functions
+```
+
+
 .footer[
 Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
 ]
