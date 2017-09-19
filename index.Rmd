@@ -145,6 +145,16 @@ _Images: Pat&Mat animation._
 
 ]
 
+---
+
+## Version control: the old way
+Example of version control via name.
+
+```{r, echo=FALSE, out.width=600}
+knitr::include_graphics("img/versioncontrol-oldway.png")
+```
+
+Mastering [version control via name](http://thomasleeper.com/2017/09/my-first-project/).
 
 ---
 
