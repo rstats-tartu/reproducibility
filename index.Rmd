@@ -217,6 +217,12 @@ _Images: Pat&Mat animation._
 
 ---
 
+## More about using GitHub for version control
+
+Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
+
+---
+
 ## Folder structure of an R project
 
 ```
@@ -242,6 +248,20 @@ project/
 .footer[
 Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
 ]
+
+---
+
+## Use projects, never set your working directory manually
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Use. Projects. — <a href="https://twitter.com/JennyBryan">@JennyBryan</a> at <a href="https://twitter.com/hashtag/EARLConf2017?src=hash">#EARLConf2017</a> <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> <a href="https://t.co/r4a08JhWHT">pic.twitter.com/r4a08JhWHT</a></p>&mdash; David Smith (@revodavid) <a href="https://twitter.com/revodavid/status/907897658689417217">September 13, 2017</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+## More about organising your data analysis projects
+
+
+Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
+
 
 ---
 class: inverse, middle
