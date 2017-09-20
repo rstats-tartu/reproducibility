@@ -251,10 +251,17 @@ Bryan J. (2017) Excuse me, do you have a moment to talk about version control? P
 
 ---
 
-## What is R project and what is GitHub repo
+## What is RStudio project and what is GitHub repo
 
-- R project is standalone folder where your 
+- [R projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) are standalone folders where your work lives with its own working directory, workspace, history, and source documents.
 
+--
+
+- RStudio project can be used with Git version control by creating local [Git repository](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-init). 
+--
+
+- GitHub is a web-based Git or version control repository and Internet hosting service. 
+ 
 ---
 
 ## Folder structure of an R project
@@ -296,6 +303,49 @@ Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproduc
 
 Marwick B, Boettiger C, Mullen L. (2017) Packaging data analytical work reproducibly using R (and friends) PeerJ Preprints 5:e3192v1 https://doi.org/10.7287/peerj.preprints.3192v1
 
+---
+
+## GitHub as internet hosting service
+Let's create and publish GitHub hosted webpage for following ggplot demo, 15 min
+
+- Go to your GitHub account and create new repository eg **`ggplotdemo`** (check **Initialize this repository with a README**).
+
+--
+
+- On GitHub create gh-pages branch: 
+      - 'Branch: **master**' button > Switch branches/tags > *Find or create a branch* > type into textbox: **gh-pages**
+
+--
+
+- Set gh-pages branch as your default branch
+    - '2 branches' tab > Overview > Change default branch > select **gh-pages** from menu > update
+    - now you push and pull into gh-pages by default
+
+--
+- On GitHub click "Clone or download"
+
+---
+## GitHub as internet hosting service, continued
+
+- Go to RStudio
+- Clone this repo into your RStudio project "Project">"New project">"Version Control">"Git"
+--
+- Create R markdown file:
+      - File > New File > R Markdown
+- Save this file:
+      - Save under name **index.Rmd** (.Rmd is automatically added)
+--
+- Edit at least title to eg, "ggplot2 demo"
+- Knit index.Rmd into html
+      - commit all files
+      - push 
+
+---
+
+## GitHub as internet hosting service, continued
+
+- Go to: https://<your-github-username>.github.io/ggplotdemo
+- What to you see?
 
 ---
 class: inverse, middle
