@@ -1,8 +1,8 @@
 ---
 title: "Reproducible data analysis workflow using version control"
-subtitle: "Reproducible data analysis using R, Tartu 2017"
+subtitle: "Teaduse metodoloogia ja eetika biomeditsiinis, Tartu 2021"
 author: "Taavi Päll"
-date: "2017/09/19"
+date: "2021/09/29"
 output:
   xaringan::moon_reader:
     includes:
@@ -53,73 +53,49 @@ Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Io
 
 ---
 
-## Replicability
+## Computational reproducibility
 
-> Replication is different from reproducibility in a sense that someones results 
-can be replicated also without strictly following provided protocols. In fact, often
-it's desirable to replicate other peoples results using completely different approach. 
-Replication has therefore more broader scope, replication is how science works.
-
----
-
-## This course is more about replicability
-
-- Replicability improves reproducibility, but not ensures it 100%, 
-- because getting the same number does not fix faults in experimental design and 
-scientific question asked. 
-- It's not uncommon that researchers cannot replicate their own computation results, mainly because _poor documentation of data analysis steps, leading to inadvertent errors_ in published articles, and even to retractions.
 
 > **Minimal components** that enable independent regeneration of computational results **are the data, the computational steps (the code), and the workflow** describing how to generate the results using the data and code. Required info includes parameter settings, random number seeds, make files, or function invocation sequences (Stodden, 2016).
 
 ---
 class: middle
 
+```{r, echo=FALSE, fig.align="center"}
+knitr::include_graphics("img/DJq7RgKX0AENVlO.jpeg")
+```
+
 <div>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">&quot;We have known common problems when developing analysis&quot; here is a list by <a href="https://twitter.com/hspter">@hspter</a> and <a href="https://twitter.com/JennyBryan">@JennyBryan</a> <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> <a href="https://twitter.com/hashtag/EARLconf2017?src=hash">#EARLconf2017</a> <a href="https://t.co/fVjlq9Q3OF">pic.twitter.com/fVjlq9Q3OF</a></p>&mdash; Alice Data (@alice_data) <a href="https://twitter.com/alice_data/status/908244191733538816">September 14, 2017</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
 ---
-class: middle
 
-> This course teaches how to conduct and document data analysis and disseminate results using freely available toolset, consisting of R statistical language, R markdown and Git version control.
-
----
-class: inverse, middle, center
-
-# Tooling up
-
----
-
-## Reproducibility toolkit
+## Reproducibility using R markdown
 
 - Use of **R markdown** allows easy code and analysis annotation.
 - <i class="fa fa-git fa-lg" aria-hidden="true"></i> + <i class="fa fa-github fa-lg" aria-hidden="true"></i> (_GitHub_) helps tracking progress.
 
 <br><br>
 <div class=center>
-<img src="https://www.stickermule.com/marketplace/embed_img/9288" style="max-width:100%;">
-<img src="https://www.stickermule.com/marketplace/embed_img/9305" style="max-width:100%;">
-<img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" style="max-width:30%;">
+<img src="img/rmarkdown.png" style="max-width:15%;">
+<img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="max-width:30%;">
+<img src="img/Github_Logo.png" style="max-width:35%;">
 </div>
 
 ---
 
 ## Why R markdown
+
 Reproducibility and efficiency
 
-.pull-left[
+
 - Code, prose and output together; syntax highlighting.
 - Your only workflow is reproducible workflow.
 - Consistent formatting, easier to share.
 - Iterative progress, knit early an knit often.
-]
 
-.pull-right[
-<br>
-<div class=center>
-<img src="https://www.stickermule.com/marketplace/embed_img/9298" style="max-width:100%;">
-</div>
-]
+
 ---
 
 ## Why <i class="fa fa-git fa-lg" aria-hidden="true"></i> and <i class="fa fa-github fa-lg" aria-hidden="true"></i> (_GitHub_) is useful
@@ -160,7 +136,7 @@ Mastering [version control via name](http://thomasleeper.com/2017/09/my-first-pr
 
 ## <i class="fa fa-git fa-lg" aria-hidden="true"></i> and <i class="fa fa-github fa-lg" aria-hidden="true"></i>, continued
 
-- __Collaboration__: platform and inerface designed to enable collaboration (in software development).
+- __Collaboration__: platform and interface designed to enable collaboration (in software development).
 - __Accountability__: transparent commit history.
 - __Marketability__ and __discoverability__.
 <br>
@@ -177,23 +153,24 @@ Mastering [version control via name](http://thomasleeper.com/2017/09/my-first-pr
 - Transparent commit history: Version control helps assess scientific paper or project authors contributions
 
 ---
-class: inverse, middle, center
 
-# Let's try out to connect <img src="https://www.stickermule.com/marketplace/embed_img/9288" style="max-width:10%;"> with <img src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" style="max-width:15%;">
-
----
-
-## Let's start by creating an GitHub account
+## Start your code reproducibility by creating an GitHub account
 
 - Create a GitHub account at https://github.com
     - This will be a public account associated with your name
     - Choose a username wisely for future use
     - Don't worry about details, you can fill them later
-- Create a repository `intro_demo`
+    
+- Test repo: create a repository called e.g. `demo`
     - Give a brief and informative description
     - Choose "Public"
     - Check the box for "Initialize this repository with a README"
     - Click "Create Repository"
+    
+.footer[
+Pushing your repo to Github using https now requires  [creating-a-personal-access-token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+or using Github CLI to authenticate via web browser.
+]
 
 ---
 
@@ -204,8 +181,8 @@ class: inverse, middle, center
     - Version Control: Checkout a project from a version control repository
     - Fill in the info:
          - URL: use HTTPS address
-         - Create as a subdirectory of: Browse and create a new folder call `rstats2017`
-- Note for the future: Each course component you work on will live in its own repository, and should be fully contained in a folder inside the folder `rstats2017`.
+         - Create as a subdirectory of: Browse and create a new folder called e.g. `rstats2021`
+
 
 ---
 
@@ -227,7 +204,7 @@ class: inverse, middle, center
 
 --
 
-- Unfortunately, it's impossible to avoid shell: using RStudio interface, you can commit, push-pull, edit .gitignore file, change between branches.
+- It's impossible to avoid shell: using RStudio interface, you can commit, push-pull, edit .gitignore file, change between branches.
 
 --
 
@@ -237,7 +214,7 @@ class: inverse, middle, center
 
 --
 
-- Currently, [RStudio Preview](https://www.rstudio.com/products/rstudio/download/preview/) developmental version includes also system shell.
+- [RStudio](https://www.rstudio.com/products/rstudio/) has tons of features including system shell.
 
 --
 
@@ -264,11 +241,10 @@ Bryan J. (2017) Excuse me, do you have a moment to talk about version control? P
  
 ---
 
-## Folder structure of an R project
+## Minimal structure of an data analysis project
 
 ```
 project/
-|- DESCRIPTION       # project metadata and dependencies
 |- README.md         # description of contents and guide to users
 |- my_analysis.Rmd   # markdown file containing analysis
 |                    # writeup together with R code chunks
@@ -277,12 +253,11 @@ project/
 |  +-my_data.csv     # data files in open formats, 
 |                    # such as TXT, CSV, TSV etc.
 |
-|- src/              # any programmatic code
-|  +-my_scripts.R    # R code used to analyse and 
-|                    # visualise data
-|
-|- lib/              # user generated functions
-|  +-my_functions.R  # R code defining functions
+|- scripts/          # any programmatic code
+|  +-my_scripts.R    # R code used to analyse and visualise
+|  +-my-analysis.Rmd # use "here" package for paths if
+|                    # keeping .Rmd files under scripts
+|- results/outputs/reports/  # whatever you need
 ```
 
 
@@ -313,7 +288,7 @@ Let's create and publish GitHub hosted webpage for following ggplot demo, 15 min
 --
 
 - On GitHub create gh-pages branch: 
-      - 'Branch: **master**' button > Switch branches/tags > *Find or create a branch* > type into textbox: **gh-pages**
+      - 'Branch: **main**' button > Switch branches/tags > *Find or create a branch* > type into textbox: **gh-pages**
 
 --
 
