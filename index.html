@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Reproducible data analysis workflow using version control</title>
+    <title>Version control for reproducible data analysis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Taavi Päll" />
+    <meta name="date" content="2023-11-22" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     
@@ -14,10 +15,15 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Reproducible data analysis workflow using version control
-## Teaduse metodoloogia ja eetika biomeditsiinis, Tartu 2021
+.title[
+# Version control for reproducible data analysis
+]
+.author[
 ### Taavi Päll
-### 2021/09/29
+]
+.date[
+### 2023-11-22
+]
 
 ---
 
@@ -26,78 +32,167 @@ class: center, middle, inverse, title-slide
 
 class: inverse, center, middle
 
-# What is reproducibility and replicability in science?
+# Short intro to reproducibility
 
 ---
+class: important
 
 ## Reproducibility
 
-&gt; Reproducibility of research is understood as calculation of quantitative research results by independent researchers using original data and methods.
+&gt; Calculation of quantitative research results by independent researchers using original data and methods
 
-Meaning that you should be able to follow the analysis path of someones results 
+???
+
+1. You should be able to follow the analysis path of someones results 
 from data to final results and obtain numerically close* or identical values.
 
+2. Same numeric results can be obtained from the same data using different calculation methods.
 
-Although, same numeric results can be obtained from the same data using different calculation methods.
-
-.footnote[Sometimes analysis involves for example random sampling. To make 
+.footnote[[*] Sometimes analysis involves for example random sampling. To make 
 such calculations replicable use `set.seed()`.]
 
 ---
 
 ## Levels of reproducibility
 
-- Reproducibility can be dependent on three levels of information: **empirical, statistical, computational** (Stodden, 2016).
+- Reproducibility can be dependent on three levels of information: __empirical, statistical, computational__*.
+
+--
+
 - Empirical reproducibility includes experimental details, used reagents, cell lines, instruments, instrument settings.
+
+--
+
 - Statistical reproducibility includes details about used statistical tests, used models, thresholds.
-- Computational reproducibility means availability of data, details about software, workflows, and details of the computational environment.
+
+--
+
+- Computational reproducibility means availability of data, code, workflows, and details of the computational environment.
 
 .footnote[
-Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Ioannidis, JP, Taufer, M (2016). Enhancing reproducibility for computational methods. Science, 354, 6317:1240-1241.
+[*] Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Ioannidis, JP, Taufer, M (2016). Enhancing reproducibility for computational methods. Science, 354, 6317:1240-1241.
 ]
 
 ---
 
-## Computational reproducibility
+## Minimal components of computational reproducibility
+
+- Data, 
+- Code/scripts, 
+- Workflow describing how to generate the results using the data and code. 
+- Parameter settings, random number seeds.
 
 
-&gt; **Minimal components** that enable independent regeneration of computational results **are the data, the computational steps (the code), and the workflow** describing how to generate the results using the data and code. Required info includes parameter settings, random number seeds, make files, or function invocation sequences (Stodden, 2016).
+???
+
+If you perform your analyses using e.g. R or Python, then statistical reproducibility is also covered by availability of code.
+
+
+---
+class: important
+
+## Computational reproducibility facilitates replication
+
+- More commonly, we want to replicate someone else's analysis workflow on our own data to get comparable results
+- We need code, workflow, and parameters
+
+???
+
+We are not pursuing empirical reproducibility -- we bring our own raw data. 
+
+However, there are lots of aspects of computational reproducibility that may not work or can go wrong.
 
 ---
 class: middle
 
-&lt;img src="img/DJq7RgKX0AENVlO.jpeg" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/DJq7RgKX0AENVlO.jpeg" width="2731" style="display: block; margin: auto;" /&gt;
 
 &lt;div&gt;
 &lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;&amp;quot;We have known common problems when developing analysis&amp;quot; here is a list by &lt;a href="https://twitter.com/hspter"&gt;@hspter&lt;/a&gt; and &lt;a href="https://twitter.com/JennyBryan"&gt;@JennyBryan&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/rstats?src=hash"&gt;#rstats&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/EARLconf2017?src=hash"&gt;#EARLconf2017&lt;/a&gt; &lt;a href="https://t.co/fVjlq9Q3OF"&gt;pic.twitter.com/fVjlq9Q3OF&lt;/a&gt;&lt;/p&gt;&amp;mdash; Alice Data (@alice_data) &lt;a href="https://twitter.com/alice_data/status/908244191733538816"&gt;September 14, 2017&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
 &lt;/div&gt;
 
+???
+
+Let's discuss what is behind each of these problems
+
+1. Parts of the analysis are not deterministic. Parameters are not described sufficiently. workflow is not described sufficiently.
+2. Analysis is not documented sufficently/code is not available.
+3. Data is in different shape or format, missing variables.
+4. Older versions of the used software/code are not available.
+5. Code is broken/not self-sufficient and analysis involves some external actions not implemented in the code. (something that Ülo does alot)
+6. Code should be self-sufficient and all analyses should easy to rerun. Keep track of changes in the code and tag and save versions.
+7. Save results obtained with new code to a new folder or put also results under version control (if not too big, optimally less than 1 GB)
+8. version control not implemented
+9. code is not sufficiently documented/commented
+
+
+10. Follow DRY principle -- don't repeat yourself and wrap some repetitive pieces of code/analyses into functions to reduce errors and enhance readability
+11. result of not using DRY principle -- analysis logic is used inconsistently in different parts of analysis
+12. Code runs without errors, but the result is incorrect. You don't run tests to assure that code produces correct/expected results, error handling not implemented.
+13. You overwrite your raw data with processed data
+14. everything can happen... e.g. variable data type is silently changed during import
+15. insufficient regular expression can cause bias in results, because only part of the expected matches are found
+16. Insufficient knowledge of coding language can lead to a convoluted code posing significant bottleneck for throughput
+
+
+17. code is not publicly available
+18. incompatible licences?
+19. version control not implemented, code is not public
+20. your collaborators are not using public code repositories, they not in the same skill level
+
+
+
 ---
 
-## Reproducibility using R markdown
+## Code/computational reproducibility using git and GitHub
 
-- Use of **R markdown** allows easy code and analysis annotation.
-- &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; + &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_) helps tracking progress.
+- &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_) is like a virtual playground for developers. 
+- It's a web-based platform that uses &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; for version control, allowing people to collaborate on projects. 
+- Developers use it to store and manage their code, track changes, and work together on software projects. 
+- It's a hub for open-source collaboration, making it easier for multiple people to contribute to and maintain code. 
 
 &lt;br&gt;&lt;br&gt;
 &lt;div class=center&gt;
-&lt;img src="img/rmarkdown.png" style="max-width:15%;"&gt;
 &lt;img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" style="max-width:30%;"&gt;
 &lt;img src="img/Github_Logo.png" style="max-width:35%;"&gt;
 &lt;/div&gt;
 
+.footnote[
+Source: ChatGPT3.5
+]
+
+???
+
+Think of it as a social network for developers and their code!
+
 ---
 
-## Why R markdown
+### Key features of GitHub include
 
-Reproducibility and efficiency
+1. Version Control
+2. Collaboration
+3. Issue Tracking 
+4. Wikis 
+5. Actions 
+6. Projects 
+7. Gists 
 
+.footnote[
+Sources: 
+- ChatGPT3.5; 
+- Mine Cetinkaya-Rundel ["Teach datascience to new users"](https://github.com/mine-cetinkaya-rundel/2017-07-05-teach-ds-to-new-user)
+- Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
+]
 
-- Code, prose and output together; syntax highlighting.
-- Your only workflow is reproducible workflow.
-- Consistent formatting, easier to share.
-- Iterative progress, knit early an knit often.
+???
 
+1. GitHub allows developers to track changes to their code, collaborate with others, and manage different versions of their software.
+2.  Developers can work together on projects using GitHub's collaboration features. This includes the ability to fork repositories, submit pull requests to propose changes, and review and discuss code.
+3. GitHub provides a built-in issue tracking system that allows developers to report bugs, propose new features, or discuss ideas. Issues can be assigned, labeled, and linked to specific code changes.
+4. Each GitHub repository can have its wiki, which is a space for documentation and other project-related information.
+5. GitHub Actions allow developers to automate workflows for building, testing, and deploying code directly from their repositories.
+6. GitHub Projects provide a way to organize and manage work on a specific feature, bug fix, or any other kind of task.
+7. Gists are a way to share snippets or small pieces of code with others. They can be public or private and are often used for sharing examples, troubleshooting code, or collaborating on small projects.
 
 ---
 
@@ -109,10 +204,10 @@ Reproducibility and efficiency
 
 .pull-right[
 
-&lt;img src="img/patmat1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/patmat1.png" width="400" style="display: block; margin: auto;" /&gt;
 
 
-&lt;img src="img/patmat2.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/patmat2.png" width="400" style="display: block; margin: auto;" /&gt;
 
 .footnote[
 _Images: Pat&amp;Mat animation._
@@ -129,25 +224,10 @@ Example of version control via name.
 
 Mastering [version control via name](http://thomasleeper.com/2017/09/my-first-project/).
 
----
-
-## &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; and &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt;, continued
-
-- __Collaboration__: platform and interface designed to enable collaboration (in software development).
-- __Accountability__: transparent commit history.
-- __Marketability__ and __discoverability__.
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-.footer[
-- Source: Mine Cetinkaya-Rundel ["Teach datascience to new users"](https://github.com/mine-cetinkaya-rundel/2017-07-05-teach-ds-to-new-user)
-- Bryan J. (2017) Excuse me, do you have a moment to talk about version control? PeerJ Preprints 5:e3159v2 https://doi.org/10.7287/peerj.preprints.3159v2
-]
-
 ???
 
-- Transparent commit history: Version control helps assess scientific paper or project authors contributions
+I have seen people keeping their code in MS Word.
+
 
 ---
 
@@ -157,7 +237,11 @@ Mastering [version control via name](http://thomasleeper.com/2017/09/my-first-pr
     - This will be a public account associated with your name
     - Choose a username wisely for future use
     - Don't worry about details, you can fill them later
-    
+
+---
+
+### Create test repo on GitHub
+ 
 - Test repo: create a repository called e.g. `demo`
     - Give a brief and informative description
     - Choose "Public"
@@ -178,7 +262,7 @@ or using Github CLI to authenticate via web browser.
     - Version Control: Checkout a project from a version control repository
     - Fill in the info:
          - URL: use HTTPS address
-         - Create as a subdirectory of: Browse and create a new folder called e.g. `rstats2021`
+         - Create as a subdirectory of: Browse and create a new folder called e.g. `rstats2023`
 
 
 ---
@@ -227,7 +311,7 @@ Bryan J. (2017) Excuse me, do you have a moment to talk about version control? P
 
 ## What is RStudio project and what is GitHub repo
 
-- [R projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) are standalone folders where your work lives with its own working directory, workspace, history, and source documents.
+- [R projects](https://support.posit.co/hc/en-us/articles/200526207-Using-Projects) are standalone folders where your work lives with its own working directory, workspace, history, and source documents.
 
 --
 
@@ -389,6 +473,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
