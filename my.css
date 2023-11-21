@@ -1,6 +1,6 @@
 
 .title-slide {
-  background-image: url(img/20170911_142033.jpg);
+  background-image: url(img/loch-ossian-hostel.png);
   background-size: cover;
 }
 
@@ -15,4 +15,8 @@
 }
 
 
-
+.important {
+  background-color: #272822;
+  color: #d6d6d6;
+  text-shadow: 0 0 20px #333;
+}
