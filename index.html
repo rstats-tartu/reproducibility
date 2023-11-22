@@ -73,6 +73,13 @@ such calculations replicable use `set.seed()`.]
 [*] Stodden, V, McNutt, M, Bailey, DH, Deelman, E, Gil, Y, Hanson, B, Heroux, MA, Ioannidis, JP, Taufer, M (2016). Enhancing reproducibility for computational methods. Science, 354, 6317:1240-1241.
 ]
 
+???
+
+- thresholds example: We keep 1kb contigs from metagenomic assembles, but for virus identification, we use only 5b and longer contigs, since we have empirically determined that it is the minimum required by downstream viral classification
+- Computational components, leading to a processed data to be statistically analysed is usually well described and documented on level of code and workflows. 
+- But statistical components are usually available as a free text in articles' Results and Methods sections, which makes this part much difficult to reproduce/replicate.
+
+
 ---
 
 ## Minimal components of computational reproducibility
@@ -85,7 +92,9 @@ such calculations replicable use `set.seed()`.]
 
 ???
 
-If you perform your analyses using e.g. R or Python, then statistical reproducibility is also covered by availability of code.
+- If you perform your analyses using e.g. R or Python, then statistical reproducibility is also covered by availability of code.
+- Examples: workflows nf-core/mag, protocols virsorter2 + checkv + dramv 
+
 
 
 ---
@@ -140,6 +149,59 @@ Let's discuss what is behind each of these problems
 19. version control not implemented, code is not public
 20. your collaborators are not using public code repositories, they not in the same skill level
 
+---
+
+#### Excerpt from a log file. What type of reproducibility problem is this?
+
+.small-code[
+```bash
+2023-11-22 00:00:30,004 - Getting descriptions of hits from peptidase
+2023-11-22 00:00:31,005 - Getting hits from pfam
+2023-11-22 00:01:24,730 - Getting hits from dbCAN
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/database_handler.py:215: UserWarning: No descriptions were found for your id's. Does this SLH look like an id from dbcan_description
+  warnings.warn(
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/database_handler.py:215: UserWarning: No descriptions were found for your id's. Does this GT2_Glycos_transf_2 look like an id from dbcan_description
+  warnings.warn(
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/database_handler.py:215: UserWarning: No descriptions were found for your id's. Does this SLH look like an id from dbcan_description
+  warnings.warn(
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/database_handler.py:215: UserWarning: No descriptions were found for your id's. Does this GT2_Glyco_tranf_2_3 look like an id from dbcan_description
+  warnings.warn(
+2023-11-22 00:01:56,057 - Getting hits from VOGDB
+2023-11-22 00:28:56,241 - Merging ORF annotations
+2023-11-22 00:30:17,522 - Annotations complete, processing annotations
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/annotate_vgfs.py:189: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  virsorter_genes['start_position'] = virsorter_genes['start_position'].astype(int)
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/mag_annotator/annotate_vgfs.py:190: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  virsorter_genes['end_position'] = virsorter_genes['end_position'].astype(int)
+2023-11-22 00:31:09,846 - The log file is created at results/DRAMv/MEGAHIT-group-EV01/dramv-distill/distill.log
+2023-11-22 00:31:10,120 - Retrieved database locations and descriptions
+2023-11-22 00:31:10,180 - Note: the fallowing id fields were not in the annotations file and are not being used: ['kegg_genes_id', 'kegg_id', 'camper_id', 'fegenie_id', 'sulfur_id', 'methyl_id'], but these are ['ko_id', 'kegg_hit', 'peptidase_family', 'cazy_best_hit', 'pfam_hits']
+2023-11-22 00:31:10,180 - Determined potential amgs
+2023-11-22 00:31:11,109 - Calculated viral genome statistics
+2023-11-22 00:31:11,139 - No distillate information found for 0 genes.
+2023-11-22 00:31:11,144 - Generated AMG summary
+/gpfs/space/home/taavi74/miniconda3/envs/DRAM/lib/python3.10/site-packages/altair/utils/core.py:317: FutureWarning: iteritems is deprecated and will be removed in a future version. Use .items instead.
+  for col_name, dtype in df.dtypes.iteritems():
+2023-11-22 00:31:11,685 - Generated product heatmap
+2023-11-22 00:31:11,685 - Completed distillation
+"module purge" command filed with exit code 0.
+```
+]
+
+
+???
+
+- Please see warnings in the log file.
+- We had our article rejected during the second round of review, because computational environment that we used to import raw data accidentally missed a library and certain types of files were not imported, suggesting that the results might be biased.
+Embarrassingly, missing library was reported in my error logs, I designed these errors to be non breaking and therefore I could ignore these messages... I was fed up with the project.
 
 
 ---
@@ -196,7 +258,7 @@ Sources:
 
 ---
 
-## Why &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; and &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_) is useful
+## Why &lt;i class="fa fa-git fa-lg" aria-hidden="true"&gt;&lt;/i&gt; version control is useful
 
 .pull-left[
 - __Version control__: lots of mistakes along the way, track history to revert back to last good code.
@@ -215,6 +277,12 @@ _Images: Pat&amp;Mat animation._
 
 ]
 
+
+???
+
+- If analysis ends up in some awful place, it's easy to roll back to last good code and restart. Given that you commit (save) your changes sufficiently often.
+
+
 ---
 
 ## Version control: the old way
@@ -231,6 +299,8 @@ I have seen people keeping their code in MS Word.
 
 ---
 
+class: important
+
 ## Start your code reproducibility by creating an GitHub account
 
 - Create a GitHub account at https://github.com
@@ -241,7 +311,8 @@ I have seen people keeping their code in MS Word.
 ---
 
 ### Create test repo on GitHub
- 
+
+- Go to &lt;i class="fa fa-github fa-lg" aria-hidden="true"&gt;&lt;/i&gt; (_GitHub_)
 - Test repo: create a repository called e.g. `demo`
     - Give a brief and informative description
     - Choose "Public"
